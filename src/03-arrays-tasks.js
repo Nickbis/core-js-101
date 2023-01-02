@@ -551,8 +551,17 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-    
-  //throw new Error('Not implemented');
+  return array.reduce((map, item) => {
+    const key = keySelector(item);
+    const val = valueSelector(item);
+    if (map.has(key)) {
+      map.get(key).push(val);
+    } else {
+      map.set(key, [val]);
+    }
+    return map;
+  }, new Map());
+  // throw new Error('Not implemented');
 }
 
 
